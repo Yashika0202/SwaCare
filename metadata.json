@@ -1,0 +1,6 @@
+{
+  "name": "Luna - Women's Health Companion",
+  "description": "A private, mobile-first women's health companion for menstrual cycle and symptom tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
