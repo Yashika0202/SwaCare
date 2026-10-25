@@ -30,7 +30,6 @@ SwaCare is a women's health companion that helps women understand their bodies, 
 - [Project Structure](#project-structure)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
-- [License](#license)
 
 ---
 
@@ -218,10 +217,5 @@ Contributions are welcome, especially from clinicians, designers, and translator
 
 For any change to screening rules, please cite a clinical source in the pull request.
 
-## License
-
-Add your license here  and include a `LICENSE` file.
-
----
 
 *SwaCare: because every woman deserves to understand her own health.*
