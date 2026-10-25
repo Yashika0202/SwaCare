@@ -34,9 +34,7 @@ SwaCare is a women's health companion that helps women understand their bodies, 
 
 ---
 
-## Demo and Screenshots
-
-**Live demo:** [Add your deployed link here](https://your-demo-link.example)
+## Screenshots
 
 Save your screenshots in a `docs/screenshots/` folder in the repository and they will show up below.
 
