@@ -36,11 +36,9 @@ SwaCare is a women's health companion that helps women understand their bodies, 
 
 ## Screenshots
 
-Save your screenshots in a `docs/screenshots/` folder in the repository and they will show up below.
-
 | Home | Daily Check-in | Calendar |
 |:---:|:---:|:---:|
-| ![Home](docs/screenshots/home.png) | ![Check-in](docs/screenshots/checkin.png) | ![Calendar](docs/screenshots/calendar.png) |
+| ![Home](screenshots/home.jpg) | ![Check-in](docs/screenshots/checkin.png) | ![Calendar](docs/screenshots/calendar.png) |
 
 | Insights | Screening | Doctor Report |
 |:---:|:---:|:---:|
