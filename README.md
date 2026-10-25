@@ -38,11 +38,11 @@ SwaCare is a women's health companion that helps women understand their bodies, 
 
 | Home | Daily Check-in | Calendar |
 |:---:|:---:|:---:|
-| ![Home](swacare/screenshots/home.jpg) | ![Check-in](swacare/screenshots/checkin.jpg) | ![Calendar](swacare/screenshots/ca;endar.jpg) |
+| ![Home](Screenshots/home.jpg) | ![Check-in](Screenshots/checkin.jpg) | ![Calendar](Screenshots/calendar.jpg) |
 
 | Insights | Screening | Doctor Report |
 |:---:|:---:|:---:|
-| ![Insights](swacare/screenshots/insights.jpg) | ![Screening](swacare/screenshots/screening.jpg) | ![Report](swacare/screenshots/report.jpg) |
+| ![Insights](Screenshots/insights.jpg) | ![Screening](Screenshots/screening.jpg) | ![Report](Screenshots/report.jpg) |
 
 ---
 
