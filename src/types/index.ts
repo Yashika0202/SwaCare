@@ -56,6 +56,7 @@ export interface DailyCheckIn {
 }
 
 export interface UserProfile {
+  name?: string;
   age: number;
   lifeStage?: LifeStageMode; // default adult
   pregnancyStartDate?: string;

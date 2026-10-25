@@ -8,6 +8,9 @@ export interface PhaseWellnessAdvice {
   exerciseTipKey: string;
   energyTipKey: string;
   badgeKey: string;
+  foodPointsKeys: string[];
+  exercisePointsKeys: string[];
+  energyPointsKeys: string[];
 }
 
 export const PHASE_WELLNESS_GUIDE: Record<CyclePhase, PhaseWellnessAdvice> = {
@@ -18,6 +21,9 @@ export const PHASE_WELLNESS_GUIDE: Record<CyclePhase, PhaseWellnessAdvice> = {
     foodTipKey: 'wellness.menstrualFood',
     exerciseTipKey: 'wellness.menstrualExercise',
     energyTipKey: 'wellness.menstrualEnergy',
+    foodPointsKeys: ['wellness.menstrualFoodP1', 'wellness.menstrualFoodP2'],
+    exercisePointsKeys: ['wellness.menstrualExerciseP1', 'wellness.menstrualExerciseP2'],
+    energyPointsKeys: ['wellness.menstrualEnergyP1', 'wellness.menstrualEnergyP2'],
   },
   follicular: {
     phase: 'follicular',
@@ -26,6 +32,9 @@ export const PHASE_WELLNESS_GUIDE: Record<CyclePhase, PhaseWellnessAdvice> = {
     foodTipKey: 'wellness.follicularFood',
     exerciseTipKey: 'wellness.follicularExercise',
     energyTipKey: 'wellness.follicularEnergy',
+    foodPointsKeys: ['wellness.follicularFoodP1', 'wellness.follicularFoodP2'],
+    exercisePointsKeys: ['wellness.follicularExerciseP1', 'wellness.follicularExerciseP2'],
+    energyPointsKeys: ['wellness.follicularEnergyP1', 'wellness.follicularEnergyP2'],
   },
   ovulation: {
     phase: 'ovulation',
@@ -34,6 +43,9 @@ export const PHASE_WELLNESS_GUIDE: Record<CyclePhase, PhaseWellnessAdvice> = {
     foodTipKey: 'wellness.ovulationFood',
     exerciseTipKey: 'wellness.ovulationExercise',
     energyTipKey: 'wellness.ovulationEnergy',
+    foodPointsKeys: ['wellness.ovulationFoodP1', 'wellness.ovulationFoodP2', 'wellness.ovulationFoodP3'],
+    exercisePointsKeys: ['wellness.ovulationExerciseP1', 'wellness.ovulationExerciseP2', 'wellness.ovulationExerciseP3'],
+    energyPointsKeys: ['wellness.ovulationEnergyP1', 'wellness.ovulationEnergyP2', 'wellness.ovulationEnergyP3'],
   },
   luteal: {
     phase: 'luteal',
@@ -42,6 +54,9 @@ export const PHASE_WELLNESS_GUIDE: Record<CyclePhase, PhaseWellnessAdvice> = {
     foodTipKey: 'wellness.lutealFood',
     exerciseTipKey: 'wellness.lutealExercise',
     energyTipKey: 'wellness.lutealEnergy',
+    foodPointsKeys: ['wellness.lutealFoodP1', 'wellness.lutealFoodP2'],
+    exercisePointsKeys: ['wellness.lutealExerciseP1', 'wellness.lutealExerciseP2'],
+    energyPointsKeys: ['wellness.lutealEnergyP1', 'wellness.lutealEnergyP2'],
   },
 };
 

@@ -90,9 +90,9 @@ function MainApp() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF5F9] text-[#0B1713] flex flex-col justify-between selection:bg-[#FF6FAE] selection:text-[#0C1F78]">
+    <div className="min-h-screen bg-[#F7F8FC] text-[#0B1713] flex flex-col justify-between selection:bg-[#FF6FAE] selection:text-[#0C1F78]">
       {/* Centered Mobile-First Container */}
-      <div className="w-full max-w-md mx-auto min-h-screen flex flex-col bg-[#FFF5F9] relative sm:border-x sm:border-[#FF6FAE]/20 sm:shadow-lg sm:shadow-[#F73F8B]/5">
+      <div className="w-full max-w-md mx-auto min-h-screen flex flex-col bg-[#F7F8FC] relative sm:border-x sm:border-[#E6E8F3] sm:shadow-md">
         {/* Sticky App Header */}
         <AppHeader currentTab={currentTab} />
 

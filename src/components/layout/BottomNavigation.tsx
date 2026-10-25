@@ -30,7 +30,7 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   return (
     <nav
       aria-label="Bottom Navigation"
-      className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#FF6FAE]/25 shadow-[0_-4px_20px_rgba(247,63,139,0.06)]"
+      className="fixed bottom-0 left-0 right-0 z-40 bg-[#0C1F78] border-t border-[#081552] shadow-[0_-4px_24px_rgba(12,31,120,0.35)]"
     >
       <div className="max-w-xl mx-auto px-2">
         <ul className="grid grid-cols-4 items-center h-16 m-0 p-0 list-none">
@@ -46,30 +46,35 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
                   aria-selected={isActive}
                   role="tab"
                   className={`group relative flex flex-col items-center justify-center w-full min-h-[48px] min-w-[48px] py-1 px-2 rounded-xl transition-all duration-150 active:scale-95 ${
-                    isActive ? 'text-[#F73F8B]' : 'text-[#0C1F78]/70 hover:text-[#0C1F78]'
+                    isActive ? 'text-white' : 'text-white/60 hover:text-white'
                   }`}
                 >
-                  {/* Subtle active pill behind icon */}
+                  {/* Hot pink active tab indicator line */}
+                  {isActive && (
+                    <div className="absolute top-1 w-8 h-1 rounded-full bg-[#F73F8B] shadow-[0_0_8px_rgba(247,63,139,0.6)]" />
+                  )}
+
+                  {/* Icon container */}
                   <div
-                    className={`flex items-center justify-center w-10 h-7 rounded-full transition-colors ${
+                    className={`flex items-center justify-center w-9 h-7 rounded-lg transition-colors mt-0.5 ${
                       isActive
-                        ? 'bg-[#FF6FAE]/30 text-[#F73F8B]'
-                        : 'bg-transparent text-current group-hover:bg-[#FFF5F9]'
+                        ? 'text-[#F73F8B]'
+                        : 'text-current group-hover:text-white'
                     }`}
                   >
                     <IconComponent
                       className={`w-5 h-5 transition-transform duration-200 ${
-                        isActive ? 'scale-110 text-[#F73F8B]' : 'text-[#0C1F78]'
+                        isActive ? 'scale-110 text-[#F73F8B]' : 'text-white/70'
                       }`}
                     />
                   </div>
 
-                  {/* Label from translation helper */}
+                  {/* Label */}
                   <span
-                    className={`text-[11px] font-medium tracking-tight mt-0.5 leading-none transition-colors ${
+                    className={`text-[11px] tracking-tight mt-0.5 leading-none transition-colors ${
                       isActive
-                        ? 'font-bold text-[#F73F8B]'
-                        : 'text-[#0C1F78] group-hover:text-[#0C1F78]'
+                        ? 'font-bold text-white'
+                        : 'font-medium text-white/65 group-hover:text-white'
                     }`}
                   >
                     {t(item.labelKey)}

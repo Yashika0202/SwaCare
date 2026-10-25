@@ -6,7 +6,8 @@
   --color-navy: #0C1F78;
   --color-crimson: #960045;
   --color-ink: #0B1713;
-  --color-app-bg: #FFF5F9;
+  --color-app-bg: #F7F8FC;
+  --color-divider: #E6E8F3;
 
   --font-sans: 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
@@ -17,11 +18,12 @@
   --app-navy: #0C1F78;
   --app-crimson: #960045;
   --app-ink: #0B1713;
-  --app-bg: #FFF5F9;
+  --app-bg: #F7F8FC;
+  --app-divider: #E6E8F3;
 }
 
 body {
-  background-color: #FFF5F9;
+  background-color: #F7F8FC;
   color: #0B1713;
   font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
   margin: 0;

@@ -21,6 +21,7 @@ import {
   BookOpen,
   Heart,
   Baby,
+  User,
 } from 'lucide-react';
 import { useTranslation, Language } from '../context/LanguageContext';
 import { storage } from '../storage/localStorage';
@@ -49,6 +50,14 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
   const [currentLifeStage, setCurrentLifeStage] = useState<LifeStageMode>(() => {
     return userProfile?.lifeStage || 'adult';
   });
+
+  const [userName, setUserName] = useState<string>(() => userProfile?.name || '');
+
+  useEffect(() => {
+    if (userProfile?.name) {
+      setUserName(userProfile.name);
+    }
+  }, [userProfile]);
 
   // Discreet Mode State
   const [isDiscreet, setIsDiscreet] = useState<boolean>(() => {
@@ -106,6 +115,24 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
     };
     storage.set('user_profile', updated);
     showTemporaryNotice(`Mode updated to ${newStage.toUpperCase()}`);
+    if (onDataModified) onDataModified();
+  };
+
+  const handleSaveName = (e: React.FormEvent) => {
+    e.preventDefault();
+    const existing = storage.get<UserProfile | null>('user_profile', null) || {
+      age: 25,
+      averageCycleLength: 28,
+      averagePeriodLength: 5,
+      lastPeriodStartDate: new Date().toISOString().split('T')[0],
+      completedOnboarding: true,
+    };
+    const updated: UserProfile = {
+      ...existing,
+      name: userName.trim() || undefined,
+    };
+    storage.set('user_profile', updated);
+    showTemporaryNotice(t('settings.nameSavedNotice'));
     if (onDataModified) onDataModified();
   };
 
@@ -206,7 +233,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
   const handleExportData = () => {
     const exportObject = {
       exportDate: new Date().toISOString(),
-      appName: 'Luna Women’s Health Companion',
+      appName: 'SwaCare Women’s Health Companion',
       userProfile,
       logs: storage.get('daily_logs', {}),
     };
@@ -218,7 +245,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
     downloadAnchor.setAttribute('href', dataStr);
     downloadAnchor.setAttribute(
       'download',
-      `luna_health_export_${new Date().toISOString().split('T')[0]}.json`
+      `swacare_health_export_${new Date().toISOString().split('T')[0]}.json`
     );
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
@@ -243,10 +270,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       )}
 
       {/* Screen Header */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3]">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-[#FF6FAE] text-[#0C1F78]">
+            <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-[#FF6FAE] text-[#0C1F78]">
               {t('settings.tag')}
             </span>
             <h2 className="text-xl font-bold text-[#0C1F78] mt-1.5">
@@ -256,17 +283,63 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               {t('settings.subtitle')}
             </p>
           </div>
-          <div className="w-11 h-11 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center justify-center shrink-0">
+          <div className="w-11 h-11 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center shrink-0">
             <SettingsIcon className="w-5 h-5 text-[#0C1F78]" />
           </div>
         </div>
       </section>
 
-      {/* 1. LIFE-STAGE MODE SELECTOR */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      {/* 0. PERSONAL PROFILE / NAME */}
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center justify-center text-[#F73F8B] shrink-0">
-            <Heart className="w-4 h-4 text-[#F73F8B]" />
+          <div className="w-8 h-8 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] shrink-0">
+            <User className="w-4 h-4 text-[#0C1F78]" />
+          </div>
+          <div>
+            <h3 className="text-sm font-bold text-[#0C1F78]">
+              {t('settings.profileSectionTitle')}
+            </h3>
+            <p className="text-[11px] text-[#0B1713]/70">
+              {t('settings.profileSectionSubtitle')}
+            </p>
+          </div>
+        </div>
+
+        <form onSubmit={handleSaveName} className="space-y-3 pt-1">
+          <div>
+            <label className="block text-xs font-bold text-[#0C1F78] mb-1">
+              {t('settings.nameLabel')}
+            </label>
+            <div className="relative">
+              <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#0C1F78]">
+                <User className="w-4 h-4 text-[#0C1F78]" />
+              </div>
+              <input
+                type="text"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                placeholder={t('settings.namePlaceholder')}
+                maxLength={35}
+                className="w-full min-h-[44px] pl-10 pr-3.5 py-2 rounded-xl border border-[#E6E8F3] text-sm font-semibold text-[#0B1713] focus:outline-none focus:ring-2 focus:ring-[#0C1F78] bg-[#F7F8FC]"
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full min-h-[44px] rounded-xl bg-[#0C1F78] text-white font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#081552] active:scale-98 transition-all cursor-pointer shadow-xs"
+          >
+            <Check className="w-3.5 h-3.5 text-[#FF6FAE]" />
+            <span>{t('settings.saveNameButton')}</span>
+          </button>
+        </form>
+      </section>
+
+      {/* 1. LIFE-STAGE MODE SELECTOR */}
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] shrink-0">
+            <Heart className="w-4 h-4 text-[#0C1F78]" />
           </div>
           <div>
             <h3 className="text-sm font-bold text-[#0C1F78]">
@@ -295,8 +368,8 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                 onClick={() => handleLifeStageChange(m.id)}
                 className={`p-3 rounded-2xl text-left border transition-all cursor-pointer active:scale-98 ${
                   isSelected
-                    ? 'bg-[#FF6FAE] border-[#F73F8B] shadow-xs text-[#0C1F78]'
-                    : 'bg-[#FFF5F9] border-[#FF6FAE]/30 hover:border-[#FF6FAE] text-[#0B1713]'
+                    ? 'bg-[#FF6FAE] border-[#FF6FAE] shadow-xs text-[#0C1F78]'
+                    : 'bg-[#F7F8FC] border-[#E6E8F3] hover:border-[#0C1F78]/30 text-[#0B1713]'
                 }`}
               >
                 <div className="text-xs font-bold leading-tight">
@@ -312,10 +385,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       </section>
 
       {/* 2. DISCREET MODE TOGGLE */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center justify-center text-[#0C1F78] shrink-0">
+            <div className="w-8 h-8 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] shrink-0">
               <NotebookText className="w-4 h-4 text-[#0C1F78]" />
             </div>
             <div>
@@ -334,7 +407,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
             className={`min-h-[34px] px-3.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               isDiscreet
                 ? 'bg-[#0C1F78] text-white shadow-xs'
-                : 'bg-[#FFF5F9] text-[#0C1F78] border border-[#FF6FAE]/40'
+                : 'bg-[#F7F8FC] text-[#0C1F78] border border-[#E6E8F3]'
             }`}
           >
             {isDiscreet ? 'ACTIVE' : 'ENABLE'}
@@ -342,7 +415,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
         </div>
 
         {isDiscreet && (
-          <div className="p-3 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/25 text-xs text-[#0B1713] space-y-1">
+          <div className="p-3 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3] text-xs text-[#0B1713] space-y-1">
             <span className="font-bold text-[#0C1F78] block">
               {t('discreet.activeBadge')}
             </span>
@@ -354,10 +427,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       </section>
 
       {/* 3. KNOW THE FACTS: MYTH-BUSTING CTA */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center justify-center text-[#0C1F78] shrink-0">
+            <div className="w-8 h-8 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] shrink-0">
               <BookOpen className="w-4 h-4 text-[#0C1F78]" />
             </div>
             <div>
@@ -381,10 +454,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       </section>
 
       {/* 4. DAILY CHECK-IN REMINDER */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center justify-center text-[#F73F8B] shrink-0">
-            <Bell className="w-4 h-4 text-[#F73F8B]" />
+          <div className="w-8 h-8 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] shrink-0">
+            <Bell className="w-4 h-4 text-[#0C1F78]" />
           </div>
           <div>
             <h3 className="text-sm font-bold text-[#0C1F78]">
@@ -407,8 +480,8 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                   onClick={() => handleTimeChange(time)}
                   className={`min-h-[44px] rounded-xl text-xs font-bold transition-all cursor-pointer active:scale-95 ${
                     isSelected
-                      ? 'bg-[#F73F8B] text-white shadow-xs'
-                      : 'bg-[#FFF5F9] text-[#0C1F78] border border-[#FF6FAE]/30 hover:border-[#F73F8B]'
+                      ? 'bg-[#0C1F78] text-white shadow-xs'
+                      : 'bg-[#F7F8FC] text-[#0C1F78] border border-[#E6E8F3] hover:border-[#0C1F78]'
                   }`}
                 >
                   {time}
@@ -417,7 +490,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
             })}
           </div>
 
-          <div className="flex items-center justify-between p-3 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/25">
+          <div className="flex items-center justify-between p-3 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3]">
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-[#0C1F78]" />
               <label className="text-xs font-semibold text-[#0C1F78]">
@@ -430,7 +503,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                 type="time"
                 value={reminderTime}
                 onChange={(e) => handleTimeChange(e.target.value)}
-                className="px-2 py-1 rounded-lg border border-[#FF6FAE]/40 text-xs font-bold text-[#0C1F78] bg-white focus:outline-none"
+                className="px-2 py-1 rounded-lg border border-[#E6E8F3] text-xs font-bold text-[#0C1F78] bg-white focus:outline-none"
               />
               <button
                 type="button"
@@ -438,7 +511,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                 className={`min-h-[34px] px-3 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   reminderEnabled
                     ? 'bg-[#FF6FAE] text-[#0C1F78]'
-                    : 'bg-white border border-[#FF6FAE]/40 text-[#0B1713]/60'
+                    : 'bg-white border border-[#E6E8F3] text-[#0B1713]/60'
                 }`}
               >
                 {reminderEnabled ? 'ON' : 'OFF'}
@@ -449,11 +522,11 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       </section>
 
       {/* 5. APP LOCK (4-DIGIT PIN) */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center justify-center text-[#F73F8B] shrink-0">
-              <Lock className="w-4 h-4 text-[#F73F8B]" />
+            <div className="w-8 h-8 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] shrink-0">
+              <Lock className="w-4 h-4 text-[#0C1F78]" />
             </div>
             <div>
               <h3 className="text-sm font-bold text-[#0C1F78]">
@@ -487,7 +560,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               <button
                 type="button"
                 onClick={handleOpenSetPin}
-                className="min-h-[44px] rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/40 text-[#0C1F78] font-bold text-xs flex items-center justify-center gap-1.5 hover:bg-[#FF6FAE]/20 active:scale-95 transition-all cursor-pointer"
+                className="min-h-[44px] rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] text-[#0C1F78] font-bold text-xs flex items-center justify-center gap-1.5 hover:bg-[#E6E8F3] active:scale-95 transition-all cursor-pointer"
               >
                 <KeyRound className="w-3.5 h-3.5 text-[#0C1F78]" />
                 <span>{t('settings.changePinCTA')}</span>
@@ -505,7 +578,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
             <button
               type="button"
               onClick={handleOpenSetPin}
-              className="w-full min-h-[48px] rounded-xl bg-[#F73F8B] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs hover:opacity-95 active:scale-95 transition-all cursor-pointer"
+              className="w-full min-h-[48px] rounded-xl bg-[#F73F8B] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs hover:bg-[#e02f78] active:scale-95 transition-all cursor-pointer"
             >
               <KeyRound className="w-4 h-4 text-white" />
               <span>{t('settings.setPinCTA')}</span>
@@ -515,11 +588,11 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       </section>
 
       {/* 6. SAMPLE DEMO DATA (6 CYCLES) TOGGLE */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center justify-center text-[#F73F8B] shrink-0">
-              <Database className="w-4 h-4 text-[#F73F8B]" />
+            <div className="w-8 h-8 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] shrink-0">
+              <Database className="w-4 h-4 text-[#0C1F78]" />
             </div>
             <div>
               <h3 className="text-sm font-bold text-[#0C1F78]">
@@ -543,19 +616,19 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
           onClick={handleToggleDemoData}
           className={`w-full min-h-[48px] rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-98 shadow-xs ${
             isDemoActive
-              ? 'bg-[#FFF5F9] border border-[#FF6FAE]/40 text-[#0C1F78] hover:bg-[#FF6FAE]/20'
-              : 'bg-[#F73F8B] text-white hover:opacity-95'
+              ? 'bg-[#F7F8FC] border border-[#E6E8F3] text-[#0C1F78] hover:bg-[#E6E8F3]'
+              : 'bg-[#0C1F78] text-white hover:bg-[#081552]'
           }`}
         >
-          <Sparkles className={`w-4 h-4 ${isDemoActive ? 'text-[#F73F8B]' : 'text-white'}`} />
+          <Sparkles className={`w-4 h-4 ${isDemoActive ? 'text-[#0C1F78]' : 'text-white'}`} />
           <span>{isDemoActive ? t('settings.clearDemoCTA') : t('settings.loadDemoCTA')}</span>
         </button>
       </section>
 
       {/* 7. LANGUAGE SWITCHER */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center justify-center text-[#0C1F78] shrink-0">
+          <div className="w-8 h-8 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] shrink-0">
             <Globe className="w-4 h-4 text-[#0C1F78]" />
           </div>
           <div>
@@ -582,8 +655,8 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
                 onClick={() => setLanguage(lang.id as Language)}
                 className={`min-h-[50px] p-2 rounded-xl text-center border transition-all cursor-pointer ${
                   isSelected
-                    ? 'bg-[#FF6FAE] border-[#F73F8B] text-[#0C1F78] font-bold shadow-xs'
-                    : 'bg-[#FFF5F9] border-[#FF6FAE]/30 text-[#0B1713]/80 hover:border-[#FF6FAE]'
+                    ? 'bg-[#FF6FAE] border-[#FF6FAE] text-[#0C1F78] font-bold shadow-xs'
+                    : 'bg-[#F7F8FC] border-[#E6E8F3] text-[#0B1713]/80 hover:border-[#0C1F78]/30'
                 }`}
               >
                 <div className="text-xs font-bold">{lang.native}</div>
@@ -595,9 +668,9 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       </section>
 
       {/* 8. STORAGE & DATA MANAGEMENT */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center justify-center text-[#0C1F78] shrink-0">
+          <div className="w-8 h-8 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] shrink-0">
             <Shield className="w-4 h-4 text-[#0C1F78]" />
           </div>
           <div>
@@ -614,9 +687,9 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
           <button
             type="button"
             onClick={handleExportData}
-            className="w-full min-h-[46px] rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/40 text-[#0C1F78] font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#FF6FAE]/20 active:scale-98 transition-all cursor-pointer"
+            className="w-full min-h-[46px] rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] text-[#0C1F78] font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#E6E8F3] active:scale-98 transition-all cursor-pointer"
           >
-            <Download className="w-4 h-4 text-[#F73F8B]" />
+            <Download className="w-4 h-4 text-[#0C1F78]" />
             <span>{t('settings.exportCTA')}</span>
           </button>
 
@@ -637,7 +710,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       </section>
 
       {/* 10. MEDICAL DISCLAIMER CARD */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-2">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-2">
         <div className="flex items-center gap-2">
           <Info className="w-4 h-4 text-[#0C1F78]" />
           <h3 className="text-sm font-bold text-[#0C1F78]">
@@ -651,7 +724,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
 
       {/* Delete Data Confirmation Modal */}
       {showDeleteConfirm && (
-        <div className="fixed inset-0 z-50 bg-[#0B1713]/50 backdrop-blur-xs flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-[#0B1713]/60 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl p-6 max-w-sm w-full space-y-4 shadow-xl border border-[#960045]/30">
             <div className="w-12 h-12 rounded-2xl bg-[#960045]/10 text-[#960045] flex items-center justify-center">
               <AlertTriangle className="w-6 h-6 text-[#960045]" />
@@ -677,7 +750,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               <button
                 type="button"
                 onClick={() => setShowDeleteConfirm(false)}
-                className="w-full min-h-[42px] rounded-xl border border-[#FF6FAE]/30 text-[#0C1F78] font-semibold text-xs hover:bg-[#FFF5F9] cursor-pointer"
+                className="w-full min-h-[42px] rounded-xl border border-[#E6E8F3] text-[#0C1F78] font-semibold text-xs hover:bg-[#F7F8FC] cursor-pointer"
               >
                 {t('common.cancel')}
               </button>

@@ -94,7 +94,7 @@ export const InsightsScreen: React.FC = () => {
   const CustomChartTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white/95 backdrop-blur-sm p-2.5 rounded-xl border border-[#FF6FAE]/40 shadow-md text-xs space-y-1">
+        <div className="bg-white p-3 rounded-xl border border-[#E6E8F3] shadow-md text-xs space-y-1">
           <p className="font-bold text-[#0C1F78]">{label}</p>
           {payload.map((entry: any, index: number) => (
             <p key={index} style={{ color: entry.color }} className="font-semibold flex items-center gap-1.5">
@@ -111,10 +111,10 @@ export const InsightsScreen: React.FC = () => {
   return (
     <div className="space-y-5 pb-20 animate-fadeIn">
       {/* 1. SCREEN HEADER & DEMO SWITCHER */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3]">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-[#FF6FAE] text-[#0C1F78]">
+            <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-[#FF6FAE] text-[#0C1F78]">
               {t('insights.tag')}
             </span>
             <h2 className="text-xl font-bold text-[#0C1F78] mt-1.5">
@@ -124,16 +124,16 @@ export const InsightsScreen: React.FC = () => {
               {t('insights.subtitle')}
             </p>
           </div>
-          <div className="w-11 h-11 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center justify-center shrink-0">
+          <div className="w-11 h-11 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center shrink-0">
             <LineChartIcon className="w-5 h-5 text-[#0C1F78]" />
           </div>
         </div>
 
         {/* Doctor Report CTA Action Strip */}
-        <div className="mt-4 pt-3.5 border-t border-[#FF6FAE]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="mt-4 pt-3.5 border-t border-[#E6E8F3] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/30 text-[#0C1F78] flex items-center justify-center shrink-0">
-              <FileText className="w-4 h-4 text-[#F73F8B]" />
+            <div className="w-8 h-8 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] text-[#0C1F78] flex items-center justify-center shrink-0">
+              <FileText className="w-4 h-4 text-[#0C1F78]" />
             </div>
             <div>
               <h4 className="text-xs font-bold text-[#0C1F78]">
@@ -148,7 +148,7 @@ export const InsightsScreen: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsDoctorReportOpen(true)}
-            className="min-h-[40px] px-4 rounded-xl bg-[#0C1F78] text-white font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#081552] active:scale-95 transition-all cursor-pointer shadow-xs"
+            className="min-h-[40px] px-4 rounded-xl bg-[#F73F8B] text-white font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#e02f78] active:scale-95 transition-all cursor-pointer shadow-xs"
           >
             <FileText className="w-3.5 h-3.5" />
             <span>{t('report.modalTitle')}</span>
@@ -156,7 +156,7 @@ export const InsightsScreen: React.FC = () => {
         </div>
 
         {/* Data mode banner / toggle */}
-        <div className="mt-3 pt-3 border-t border-[#FF6FAE]/15 flex flex-wrap items-center justify-between gap-2">
+        <div className="mt-3 pt-3 border-t border-[#E6E8F3] flex flex-wrap items-center justify-between gap-2">
           {useSampleData ? (
             <div className="flex items-center gap-2">
               <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-[#FF6FAE] text-[#0C1F78]">
@@ -178,7 +178,7 @@ export const InsightsScreen: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setUseSampleData(true)}
-                className="text-xs font-semibold text-[#F73F8B] hover:underline cursor-pointer flex items-center gap-1"
+                className="text-xs font-semibold text-[#0C1F78] hover:underline cursor-pointer flex items-center gap-1"
               >
                 <Eye className="w-3.5 h-3.5" />
                 <span>{t('insights.emptyState.exploreSampleCTA')}</span>
@@ -193,7 +193,7 @@ export const InsightsScreen: React.FC = () => {
             className={`text-[11px] font-semibold px-2 py-1 rounded-md border transition-all cursor-pointer ${
               simulateAwarenessAlert
                 ? 'bg-[#960045] text-white border-[#960045]'
-                : 'bg-[#FFF5F9] text-[#960045] border-[#960045]/30 hover:bg-[#960045]/10'
+                : 'bg-[#F7F8FC] text-[#960045] border-[#960045]/30 hover:bg-[#960045]/10'
             }`}
           >
             {simulateAwarenessAlert ? 'Simulated Alert Active' : 'Test Awareness Card'}
@@ -202,20 +202,20 @@ export const InsightsScreen: React.FC = () => {
       </section>
 
       {/* 2. HEALTH PATTERN SCREENING SECTION (TOP OF INSIGHTS TAB) */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3.5">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3.5">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <div
               className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
                 screening.hasCriticalFlags
                   ? 'bg-[#960045] text-white shadow-xs'
-                  : 'bg-[#FFF5F9] border border-[#FF6FAE]/40 text-[#0C1F78]'
+                  : 'bg-[#F7F8FC] border border-[#E6E8F3] text-[#0C1F78]'
               }`}
             >
               {screening.hasCriticalFlags ? (
                 <AlertTriangle className="w-4 h-4 text-white" />
               ) : (
-                <ShieldAlert className="w-4 h-4 text-[#F73F8B]" />
+                <ShieldAlert className="w-4 h-4 text-[#0C1F78]" />
               )}
             </div>
             <div>
@@ -245,8 +245,8 @@ export const InsightsScreen: React.FC = () => {
                   key={flag.id}
                   className={`p-4 rounded-2xl border space-y-2 transition-all ${
                     isSeeDoctor
-                      ? 'bg-[#960045]/5 border-[#960045]/35 text-[#0B1713]'
-                      : 'bg-[#FFF5F9] border-[#FF6FAE]/40 text-[#0B1713]'
+                      ? 'bg-[#960045]/10 border-2 border-[#960045]/40 text-[#0B1713]'
+                      : 'bg-[#F7F8FC] border border-[#E6E8F3] text-[#0B1713]'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
@@ -287,7 +287,7 @@ export const InsightsScreen: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="pt-2 border-t border-[#FF6FAE]/20 text-xs text-[#0B1713]">
+                  <div className="pt-2 border-t border-[#E6E8F3] text-xs text-[#0B1713]">
                     <strong className="text-[#0C1F78]">{t('screening.nextStepLabel')}{' '}</strong>
                     <span>{t(flag.nextStepKey)}</span>
                   </div>
@@ -296,7 +296,7 @@ export const InsightsScreen: React.FC = () => {
             })}
           </div>
         ) : (
-          <div className="p-4 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-start gap-3">
+          <div className="p-4 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-start gap-3">
             <div className="w-8 h-8 rounded-full bg-[#FF6FAE] text-[#0C1F78] flex items-center justify-center shrink-0">
               <Check className="w-4 h-4 text-[#0C1F78]" />
             </div>
@@ -317,7 +317,7 @@ export const InsightsScreen: React.FC = () => {
             onClick={() => setIsDoctorReportOpen(true)}
             className="text-xs font-bold text-[#0C1F78] hover:text-[#F73F8B] flex items-center gap-1.5 cursor-pointer"
           >
-            <FileText className="w-3.5 h-3.5 text-[#F73F8B]" />
+            <FileText className="w-3.5 h-3.5 text-[#0C1F78]" />
             <span>{t('report.modalTitle')} &rarr;</span>
           </button>
         </div>
@@ -325,7 +325,7 @@ export const InsightsScreen: React.FC = () => {
 
       {/* 2. RULE-BASED CRIMSON AWARENESS CARD (NO DIAGNOSIS, NO AI CLAIMS) */}
       {isAwarenessTriggered && (
-        <section className="bg-[#960045]/5 border-2 border-[#960045]/30 rounded-3xl p-5 shadow-sm space-y-3 animate-fadeIn">
+        <section className="bg-[#960045]/5 border-2 border-[#960045]/40 rounded-3xl p-5 shadow-sm space-y-3 animate-fadeIn">
           <div className="flex items-start gap-3">
             <div className="w-10 h-10 rounded-2xl bg-[#960045] text-white flex items-center justify-center shrink-0 shadow-xs">
               <AlertCircle className="w-5 h-5 text-white" />
@@ -340,7 +340,7 @@ export const InsightsScreen: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white/80 rounded-2xl p-3.5 border border-[#960045]/20 space-y-1.5 text-xs">
+          <div className="bg-white rounded-2xl p-3.5 border border-[#960045]/20 space-y-1.5 text-xs">
             <strong className="text-[#0C1F78] block mb-1">
               Observed Cycle Patterns:
             </strong>
@@ -361,7 +361,7 @@ export const InsightsScreen: React.FC = () => {
       {/* 3. KEY INSIGHT CARDS (PLAIN SIMPLE LANGUAGE GENERATED FROM DATA) */}
       <section className="space-y-2.5">
         <div className="flex items-center gap-2 px-1">
-          <Sparkles className="w-4 h-4 text-[#F73F8B]" />
+          <Sparkles className="w-4 h-4 text-[#0C1F78]" />
           <h3 className="text-sm font-bold text-[#0C1F78]">
             {t('insights.cards.sectionTitle')}
           </h3>
@@ -371,7 +371,7 @@ export const InsightsScreen: React.FC = () => {
           {activeData.insightCards.map((card) => (
             <div
               key={card.id}
-              className="bg-white rounded-2xl p-4 border border-[#FF6FAE]/25 shadow-xs flex items-start gap-3 hover:shadow-sm transition-all"
+              className="bg-white rounded-2xl p-4 border border-[#E6E8F3] shadow-xs flex items-start gap-3 hover:shadow-sm transition-all"
             >
               <div
                 className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 text-white shadow-2xs"
@@ -394,7 +394,7 @@ export const InsightsScreen: React.FC = () => {
       </section>
 
       {/* 4. CHART 1: CYCLE LENGTH TREND (BAR CHART OF LAST 6 CYCLES WITH AVERAGE LINE) */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div>
           <h3 className="text-base font-bold text-[#0C1F78]">
             {t('insights.charts.chart1Title')}
@@ -410,11 +410,11 @@ export const InsightsScreen: React.FC = () => {
               data={activeData.cycles}
               margin={{ top: 15, right: 10, left: -20, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#FF6FAE" strokeOpacity={0.15} />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E6E8F3" />
               <XAxis
                 dataKey="cycleName"
                 tick={{ fill: '#0C1F78', fontSize: 11, fontWeight: 500 }}
-                axisLine={{ stroke: '#FF6FAE', strokeOpacity: 0.3 }}
+                axisLine={{ stroke: '#E6E8F3' }}
                 tickLine={false}
               />
               <YAxis
@@ -426,9 +426,9 @@ export const InsightsScreen: React.FC = () => {
               <Tooltip content={<CustomChartTooltip />} />
               <ReferenceLine
                 y={activeData.averageCycleLength}
-                stroke="#0C1F78"
+                stroke="#F73F8B"
                 strokeDasharray="4 4"
-                strokeWidth={2}
+                strokeWidth={1.5}
                 label={{
                   value: t('insights.charts.chart1Average', { avg: activeData.averageCycleLength }),
                   fill: '#0C1F78',
@@ -437,10 +437,11 @@ export const InsightsScreen: React.FC = () => {
                   fontWeight: 'bold',
                 }}
               />
+              {/* Navy main series */}
               <Bar
                 dataKey="length"
                 name="Cycle Length (Days)"
-                fill="#F73F8B"
+                fill="#0C1F78"
                 radius={[8, 8, 0, 0]}
                 barSize={32}
               />
@@ -450,7 +451,7 @@ export const InsightsScreen: React.FC = () => {
       </section>
 
       {/* 5. CHART 2: PERIOD DURATION & FLOW PER CYCLE */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div>
           <h3 className="text-base font-bold text-[#0C1F78]">
             {t('insights.charts.chart2Title')}
@@ -466,11 +467,11 @@ export const InsightsScreen: React.FC = () => {
               data={activeData.cycles}
               margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#FF6FAE" strokeOpacity={0.15} />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E6E8F3" />
               <XAxis
                 dataKey="cycleName"
                 tick={{ fill: '#0C1F78', fontSize: 11, fontWeight: 500 }}
-                axisLine={{ stroke: '#FF6FAE', strokeOpacity: 0.3 }}
+                axisLine={{ stroke: '#E6E8F3' }}
                 tickLine={false}
               />
               <YAxis
@@ -484,13 +485,15 @@ export const InsightsScreen: React.FC = () => {
                 verticalAlign="bottom"
                 wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }}
               />
+              {/* Main series: Navy #0C1F78 */}
               <Bar
                 dataKey="periodDuration"
                 name={t('insights.charts.chart2BleedingDays')}
-                fill="#FF6FAE"
+                fill="#0C1F78"
                 radius={[6, 6, 0, 0]}
                 barSize={20}
               />
+              {/* Secondary series: Crimson #960045 */}
               <Bar
                 dataKey="heavyFlowDays"
                 name={t('insights.charts.chart2HeavyDays')}
@@ -504,7 +507,7 @@ export const InsightsScreen: React.FC = () => {
       </section>
 
       {/* 6. CHART 3: PAIN TREND ACROSS CYCLE DAYS */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div>
           <h3 className="text-base font-bold text-[#0C1F78]">
             {t('insights.charts.chart3Title')}
@@ -520,13 +523,13 @@ export const InsightsScreen: React.FC = () => {
               data={activeData.painByDay}
               margin={{ top: 15, right: 10, left: -20, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#FF6FAE" strokeOpacity={0.15} />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E6E8F3" />
               <XAxis
                 dataKey="cycleDay"
                 tick={{ fill: '#0C1F78', fontSize: 10 }}
                 tickFormatter={(val) => `D${val}`}
                 interval={3}
-                axisLine={{ stroke: '#FF6FAE', strokeOpacity: 0.3 }}
+                axisLine={{ stroke: '#E6E8F3' }}
                 tickLine={false}
               />
               <YAxis
@@ -550,14 +553,15 @@ export const InsightsScreen: React.FC = () => {
                   fontWeight: 'bold',
                 }}
               />
+              {/* Navy main series */}
               <Area
                 type="monotone"
                 dataKey="averagePain"
                 name="Average Pain Score"
-                stroke="#F73F8B"
+                stroke="#0C1F78"
                 strokeWidth={2.5}
-                fill="#FF6FAE"
-                fillOpacity={0.3}
+                fill="#0C1F78"
+                fillOpacity={0.12}
               />
             </AreaChart>
           </ResponsiveContainer>
@@ -565,7 +569,7 @@ export const InsightsScreen: React.FC = () => {
       </section>
 
       {/* 7. CHART 4: MOOD, ENERGY & SLEEP PATTERNS BY CYCLE PHASE */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-4">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-4">
         <div>
           <h3 className="text-base font-bold text-[#0C1F78]">
             {t('insights.charts.chart4Title')}
@@ -580,7 +584,7 @@ export const InsightsScreen: React.FC = () => {
           {activeData.phasePatterns.map((p) => (
             <div
               key={p.phase}
-              className="bg-[#FFF5F9] rounded-2xl p-3 border border-[#FF6FAE]/30 space-y-1.5"
+              className="bg-[#F7F8FC] rounded-2xl p-3 border border-[#E6E8F3] space-y-1.5"
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold text-[#0C1F78]">
@@ -612,12 +616,12 @@ export const InsightsScreen: React.FC = () => {
               data={activeData.phasePatterns}
               margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#FF6FAE" strokeOpacity={0.15} />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E6E8F3" />
               <XAxis
                 dataKey="phase"
                 tick={{ fill: '#0C1F78', fontSize: 10, fontWeight: 500 }}
                 tickFormatter={(val) => val.charAt(0).toUpperCase() + val.slice(1, 4)}
-                axisLine={{ stroke: '#FF6FAE', strokeOpacity: 0.3 }}
+                axisLine={{ stroke: '#E6E8F3' }}
                 tickLine={false}
               />
               <YAxis
@@ -631,6 +635,7 @@ export const InsightsScreen: React.FC = () => {
                 verticalAlign="bottom"
                 wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }}
               />
+              {/* Navy main series */}
               <Bar
                 dataKey="avgSleepHours"
                 name={t('insights.charts.chart4Sleep')}
@@ -638,10 +643,11 @@ export const InsightsScreen: React.FC = () => {
                 radius={[6, 6, 0, 0]}
                 barSize={18}
               />
+              {/* Light pink secondary series */}
               <Bar
                 dataKey="avgEnergyScore"
                 name={t('insights.charts.chart4Energy')}
-                fill="#F73F8B"
+                fill="#FF6FAE"
                 radius={[6, 6, 0, 0]}
                 barSize={18}
               />
@@ -650,14 +656,14 @@ export const InsightsScreen: React.FC = () => {
         </div>
 
         {/* PMS & Mood Cycle Relationship Callout */}
-        <div className="p-4 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/35 space-y-1.5 pt-3">
+        <div className="p-4 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3] space-y-1.5 pt-3">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#F73F8B]" />
+            <Sparkles className="w-4 h-4 text-[#0C1F78]" />
             <h4 className="text-xs font-bold text-[#0C1F78]">
               {t('insights.pms.sectionTitle')}
             </h4>
           </div>
-          <p className="text-xs font-semibold text-[#0B1713] leading-relaxed">
+          <p className="text-xs font-bold text-[#0B1713] leading-relaxed">
             {t('insights.cards.pmsMoodDip')}
           </p>
           <p className="text-[11px] text-[#0B1713]/70 leading-snug">
@@ -667,7 +673,7 @@ export const InsightsScreen: React.FC = () => {
       </section>
 
       {/* 8. MOST FREQUENT SYMPTOMS: RANKED LIST */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div>
           <h3 className="text-base font-bold text-[#0C1F78]">
             {t('insights.charts.chart5Title')}
@@ -682,7 +688,7 @@ export const InsightsScreen: React.FC = () => {
             <div key={item.symptomKey} className="space-y-1">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-bold text-[#0C1F78] flex items-center gap-1.5">
-                  <span className="w-5 h-5 rounded-md bg-[#FFF5F9] text-[#0C1F78] font-bold text-[10px] flex items-center justify-center border border-[#FF6FAE]/30">
+                  <span className="w-5 h-5 rounded-md bg-[#F7F8FC] text-[#0C1F78] font-bold text-[10px] flex items-center justify-center border border-[#E6E8F3]">
                     #{idx + 1}
                   </span>
                   <span>
@@ -699,11 +705,11 @@ export const InsightsScreen: React.FC = () => {
                 </span>
               </div>
 
-              {/* Progress bar with Hot pink (#F73F8B) for top rank, Light pink for others */}
-              <div className="w-full h-2.5 bg-[#FFF5F9] rounded-full overflow-hidden border border-[#FF6FAE]/20">
+              {/* Progress bar with Navy (#0C1F78) for main series */}
+              <div className="w-full h-2.5 bg-[#F7F8FC] rounded-full overflow-hidden border border-[#E6E8F3]">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${
-                    idx === 0 ? 'bg-[#F73F8B]' : 'bg-[#FF6FAE]'
+                    idx === 0 ? 'bg-[#0C1F78]' : 'bg-[#0C1F78]/50'
                   }`}
                   style={{ width: `${Math.max(8, item.percentage)}%` }}
                 />
@@ -714,7 +720,7 @@ export const InsightsScreen: React.FC = () => {
       </section>
 
       {/* 9. MEDICAL DISCLAIMER CARD */}
-      <section className="bg-white rounded-2xl p-4 border border-[#FF6FAE]/30 shadow-xs flex items-start gap-3">
+      <section className="bg-white rounded-3xl p-4 border border-[#E6E8F3] shadow-xs flex items-start gap-3">
         <Info className="w-5 h-5 text-[#0C1F78] shrink-0 mt-0.5" />
         <div className="text-xs text-[#0B1713] leading-relaxed">
           <strong className="text-[#0C1F78] block mb-0.5">
@@ -725,7 +731,7 @@ export const InsightsScreen: React.FC = () => {
       </section>
 
       {/* 10. DEVICE PRIVACY GUARANTEE */}
-      <section className="rounded-2xl p-4 bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center gap-3">
+      <section className="rounded-3xl p-4 bg-[#F7F8FC] border border-[#E6E8F3] flex items-center gap-3">
         <Shield className="w-5 h-5 text-[#0C1F78] shrink-0" />
         <p className="text-xs text-[#0B1713] leading-tight">
           {t('insights.privacyNote')}

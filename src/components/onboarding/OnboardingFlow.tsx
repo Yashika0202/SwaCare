@@ -18,6 +18,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
   twoWeeksAgo.setDate(today.getDate() - 14);
   const defaultDateStr = twoWeeksAgo.toISOString().split('T')[0];
 
+  const [name, setName] = useState<string>('');
   const [age, setAge] = useState<number>(25);
   const [lifeStage, setLifeStage] = useState<'teen' | 'adult' | 'pregnancy' | 'perimenopause'>('adult');
   const [cycleLength, setCycleLength] = useState<number>(28);
@@ -37,6 +38,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
     }
 
     const profile: UserProfile = {
+      name: name.trim() || undefined,
       age,
       lifeStage,
       averageCycleLength: cycleLength,
@@ -51,7 +53,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF5F9] text-[#0B1713] flex flex-col justify-between p-4 max-w-md mx-auto">
+    <div className="min-h-screen bg-[#F7F8FC] text-[#0B1713] flex flex-col justify-between p-4 max-w-md mx-auto">
       {/* Top Header / Progress Indicator */}
       <header className="pt-4 pb-2 flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -106,7 +108,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                 className={`min-h-[76px] w-full p-5 rounded-2xl border-2 flex items-center justify-between text-left transition-all active:scale-[0.98] shadow-sm cursor-pointer ${
                   language === 'en'
                     ? 'border-[#F73F8B] bg-white ring-2 ring-[#F73F8B]/20'
-                    : 'border-[#FF6FAE]/40 bg-white hover:border-[#FF6FAE]'
+                    : 'border-[#E6E8F3] bg-white hover:border-[#FF6FAE]'
                 }`}
               >
                 <div className="flex items-center gap-4">
@@ -114,7 +116,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                     className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg ${
                       language === 'en'
                         ? 'bg-[#F73F8B] text-white'
-                        : 'bg-[#FF6FAE]/25 text-[#0C1F78]'
+                        : 'bg-[#F7F8FC] text-[#0C1F78]'
                     }`}
                   >
                     EN
@@ -142,7 +144,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                 className={`min-h-[76px] w-full p-5 rounded-2xl border-2 flex items-center justify-between text-left transition-all active:scale-[0.98] shadow-sm cursor-pointer ${
                   language === 'hi'
                     ? 'border-[#F73F8B] bg-white ring-2 ring-[#F73F8B]/20'
-                    : 'border-[#FF6FAE]/40 bg-white hover:border-[#FF6FAE]'
+                    : 'border-[#E6E8F3] bg-white hover:border-[#FF6FAE]'
                 }`}
               >
                 <div className="flex items-center gap-4">
@@ -150,7 +152,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                     className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg ${
                       language === 'hi'
                         ? 'bg-[#F73F8B] text-white'
-                        : 'bg-[#FF6FAE]/25 text-[#0C1F78]'
+                        : 'bg-[#F7F8FC] text-[#0C1F78]'
                     }`}
                   >
                     हि
@@ -201,10 +203,10 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
             </div>
 
             {/* Privacy Highlight Card */}
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#FF6FAE]/30 space-y-3">
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/40 flex items-center justify-center text-[#F73F8B] shrink-0">
-                  <ShieldCheck className="w-6 h-6 text-[#F73F8B]" />
+                <div className="w-10 h-10 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] shrink-0">
+                  <ShieldCheck className="w-6 h-6 text-[#0C1F78]" />
                 </div>
                 <div>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-[#0C1F78]">
@@ -220,7 +222,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                 {t('onboarding.step2.privacyDescription')}
               </p>
 
-              <div className="pt-2 space-y-2 border-t border-[#FF6FAE]/20">
+              <div className="pt-2 space-y-2 border-t border-[#E6E8F3]">
                 <div className="flex items-center gap-2 text-xs text-[#0C1F78] font-medium">
                   <div className="w-4 h-4 rounded-full bg-[#FF6FAE] text-[#0C1F78] flex items-center justify-center shrink-0">
                     <Check className="w-2.5 h-2.5" />
@@ -236,12 +238,35 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
               </div>
             </div>
 
+            {/* Name Input Card */}
+            <div className="bg-white rounded-2xl p-4 shadow-sm border border-[#E6E8F3] space-y-2">
+              <label className="block text-xs font-bold text-[#0C1F78]">
+                {t('onboarding.step2.nameLabel')}
+              </label>
+              <div className="relative">
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#0C1F78]">
+                  <User className="w-4 h-4 text-[#0C1F78]" />
+                </div>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder={t('onboarding.step2.namePlaceholder')}
+                  maxLength={35}
+                  className="w-full min-h-[44px] pl-10 pr-3.5 py-2 rounded-xl border border-[#E6E8F3] text-sm font-semibold text-[#0B1713] focus:outline-none focus:ring-2 focus:ring-[#0C1F78] bg-[#F7F8FC]"
+                />
+              </div>
+              <p className="text-[11px] text-[#0B1713]/70">
+                {t('onboarding.step2.nameHint')}
+              </p>
+            </div>
+
             {/* Action buttons */}
             <div className="pt-3 flex items-center gap-3">
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="min-h-[48px] px-4 rounded-xl border border-[#FF6FAE]/40 bg-white text-[#0C1F78] font-semibold text-sm flex items-center justify-center gap-1.5 hover:bg-[#FFF5F9] transition-all cursor-pointer"
+                className="min-h-[48px] px-4 rounded-xl border border-[#E6E8F3] bg-white text-[#0C1F78] font-semibold text-sm flex items-center justify-center gap-1.5 hover:bg-[#F7F8FC] transition-all cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4 text-[#0C1F78]" />
                 <span>{t('common.back')}</span>
@@ -269,7 +294,9 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                 {t('onboarding.step3.title')}
               </h2>
               <p className="text-xs text-[#0B1713] mt-1 leading-relaxed">
-                {t('onboarding.step3.subtitle')}
+                {name.trim()
+                  ? t('home.welcomeWithName', { name: name.trim() }) + ' — ' + t('onboarding.step3.subtitle')
+                  : t('onboarding.step3.subtitle')}
               </p>
             </div>
 
@@ -280,7 +307,27 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
             )}
 
             {/* Inputs Container */}
-            <div className="bg-white rounded-2xl p-4 shadow-sm border border-[#FF6FAE]/30 space-y-4">
+            <div className="bg-white rounded-2xl p-4 shadow-sm border border-[#E6E8F3] space-y-4">
+              {/* Name Input */}
+              <div>
+                <label className="block text-xs font-bold text-[#0C1F78] mb-1">
+                  {t('onboarding.step3.nameLabel')}
+                </label>
+                <div className="relative">
+                  <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#0C1F78]">
+                    <User className="w-4 h-4 text-[#0C1F78]" />
+                  </div>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder={t('onboarding.step3.namePlaceholder')}
+                    maxLength={35}
+                    className="w-full min-h-[44px] pl-10 pr-3.5 py-2 rounded-xl border border-[#E6E8F3] text-sm font-semibold text-[#0B1713] focus:outline-none focus:ring-2 focus:ring-[#0C1F78] bg-[#F7F8FC]"
+                  />
+                </div>
+              </div>
+
               {/* Life-Stage Mode Selector */}
               <div>
                 <label className="block text-xs font-bold text-[#0C1F78] mb-1.5">
@@ -304,7 +351,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                         className={`p-2.5 rounded-xl text-left border transition-all cursor-pointer active:scale-98 ${
                           isSelected
                             ? 'bg-[#FF6FAE] border-[#F73F8B] shadow-xs text-[#0C1F78]'
-                            : 'bg-[#FFF5F9] border-[#FF6FAE]/30 hover:border-[#FF6FAE] text-[#0B1713]'
+                            : 'bg-[#F7F8FC] border-[#E6E8F3] hover:border-[#FF6FAE] text-[#0B1713]'
                         }`}
                       >
                         <div className="text-xs font-bold leading-tight">
@@ -332,7 +379,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                     value={age}
                     onChange={(e) => setAge(parseInt(e.target.value) || 0)}
                     placeholder={t('onboarding.step3.agePlaceholder')}
-                    className="w-full min-h-[44px] px-3.5 py-2 rounded-xl border border-[#FF6FAE]/40 text-sm font-semibold text-[#0B1713] focus:outline-none focus:ring-2 focus:ring-[#F73F8B] bg-[#FFF5F9]/40"
+                    className="w-full min-h-[44px] px-3.5 py-2 rounded-xl border border-[#E6E8F3] text-sm font-semibold text-[#0B1713] focus:outline-none focus:ring-2 focus:ring-[#0C1F78] bg-[#F7F8FC]"
                     required
                   />
                   <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-medium text-[#0C1F78]/70">
@@ -347,7 +394,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                   <label className="text-xs font-bold text-[#0C1F78]">
                     {t('onboarding.step3.cycleLengthLabel')}
                   </label>
-                  <span className="text-xs font-bold text-[#F73F8B] bg-[#FF6FAE]/25 px-2 py-0.5 rounded-md">
+                  <span className="text-xs font-bold text-[#0C1F78] bg-[#F7F8FC] border border-[#E6E8F3] px-2 py-0.5 rounded-md">
                     {cycleLength} {t('common.days')}
                   </span>
                 </div>
@@ -357,7 +404,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                   max={45}
                   value={cycleLength}
                   onChange={(e) => setCycleLength(parseInt(e.target.value))}
-                  className="w-full accent-[#F73F8B] cursor-pointer"
+                  className="w-full accent-[#0C1F78] cursor-pointer"
                 />
                 <p className="text-[11px] text-[#0B1713]/70 mt-1">
                   {t('onboarding.step3.cycleLengthHint')}
@@ -370,7 +417,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                   <label className="text-xs font-bold text-[#0C1F78]">
                     {t('onboarding.step3.periodLengthLabel')}
                   </label>
-                  <span className="text-xs font-bold text-[#F73F8B] bg-[#FF6FAE]/25 px-2 py-0.5 rounded-md">
+                  <span className="text-xs font-bold text-[#0C1F78] bg-[#F7F8FC] border border-[#E6E8F3] px-2 py-0.5 rounded-md">
                     {periodLength} {t('common.days')}
                   </span>
                 </div>
@@ -380,7 +427,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                   max={10}
                   value={periodLength}
                   onChange={(e) => setPeriodLength(parseInt(e.target.value))}
-                  className="w-full accent-[#F73F8B] cursor-pointer"
+                  className="w-full accent-[#0C1F78] cursor-pointer"
                 />
                 <p className="text-[11px] text-[#0B1713]/70 mt-1">
                   {t('onboarding.step3.periodLengthHint')}
@@ -396,7 +443,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
                   type="date"
                   value={lastPeriodDate}
                   onChange={(e) => setLastPeriodDate(e.target.value)}
-                  className="w-full min-h-[44px] px-3.5 py-2 rounded-xl border border-[#FF6FAE]/40 text-sm font-semibold text-[#0B1713] focus:outline-none focus:ring-2 focus:ring-[#F73F8B] bg-[#FFF5F9]/40"
+                  className="w-full min-h-[44px] px-3.5 py-2 rounded-xl border border-[#E6E8F3] text-sm font-semibold text-[#0B1713] focus:outline-none focus:ring-2 focus:ring-[#0C1F78] bg-[#F7F8FC]"
                   required
                 />
                 <p className="text-[11px] text-[#0B1713]/70 mt-1">
@@ -410,7 +457,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({ onComplete }) =>
               <button
                 type="button"
                 onClick={() => setStep(2)}
-                className="min-h-[48px] px-4 rounded-xl border border-[#FF6FAE]/40 bg-white text-[#0C1F78] font-semibold text-sm flex items-center justify-center gap-1.5 hover:bg-[#FFF5F9] transition-all cursor-pointer"
+                className="min-h-[48px] px-4 rounded-xl border border-[#E6E8F3] bg-white text-[#0C1F78] font-semibold text-sm flex items-center justify-center gap-1.5 hover:bg-[#F7F8FC] transition-all cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4 text-[#0C1F78]" />
                 <span>{t('common.back')}</span>

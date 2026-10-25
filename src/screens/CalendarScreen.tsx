@@ -99,10 +99,10 @@ export const CalendarScreen: React.FC = () => {
   return (
     <div className="space-y-4 pb-20 animate-fadeIn">
       {/* Calendar Header Card */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/25">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3]">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-[#FF6FAE] text-[#0C1F78]">
+            <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-[#FF6FAE] text-[#0C1F78]">
               {t('calendar.tag')}
             </span>
             <h2 className="text-lg font-bold text-[#0C1F78] mt-1.5 flex items-center gap-2">
@@ -110,18 +110,18 @@ export const CalendarScreen: React.FC = () => {
               <button
                 type="button"
                 onClick={handleJumpToToday}
-                className="text-[10px] font-semibold text-[#0C1F78] bg-[#FFF5F9] px-2 py-0.5 rounded-md border border-[#FF6FAE]/30 hover:bg-[#FF6FAE]/20 transition-all cursor-pointer"
+                className="text-[10px] font-bold text-[#0C1F78] bg-[#F7F8FC] px-2 py-0.5 rounded-md border border-[#E6E8F3] hover:bg-[#E6E8F3] transition-all cursor-pointer"
               >
                 {t('calendar.todayBadge') || 'Today'}
               </button>
             </h2>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <button
               type="button"
               onClick={handlePrevMonth}
-              className="w-10 h-10 rounded-xl border border-[#FF6FAE]/30 bg-[#FFF5F9] text-[#0C1F78] flex items-center justify-center hover:bg-[#FF6FAE]/20 active:scale-95 transition-all cursor-pointer"
+              className="w-10 h-10 rounded-xl border border-[#E6E8F3] bg-[#F7F8FC] text-[#0C1F78] flex items-center justify-center hover:bg-[#E6E8F3] active:scale-95 transition-all cursor-pointer"
               aria-label={t('calendar.prevMonthAria')}
             >
               <ChevronLeft className="w-5 h-5 text-[#0C1F78]" />
@@ -129,7 +129,7 @@ export const CalendarScreen: React.FC = () => {
             <button
               type="button"
               onClick={handleNextMonth}
-              className="w-10 h-10 rounded-xl border border-[#FF6FAE]/30 bg-[#FFF5F9] text-[#0C1F78] flex items-center justify-center hover:bg-[#FF6FAE]/20 active:scale-95 transition-all cursor-pointer"
+              className="w-10 h-10 rounded-xl border border-[#E6E8F3] bg-[#F7F8FC] text-[#0C1F78] flex items-center justify-center hover:bg-[#E6E8F3] active:scale-95 transition-all cursor-pointer"
               aria-label={t('calendar.nextMonthAria')}
             >
               <ChevronRight className="w-5 h-5 text-[#0C1F78]" />
@@ -140,7 +140,7 @@ export const CalendarScreen: React.FC = () => {
         {/* Day-of-week indicators */}
         <div className="grid grid-cols-7 gap-1 text-center mb-2">
           {weekDays.map((d, i) => (
-            <span key={i} className="text-xs font-semibold text-[#0C1F78]/70 py-1">
+            <span key={i} className="text-xs font-bold text-[#0C1F78]/80 py-1">
               {d}
             </span>
           ))}
@@ -164,7 +164,7 @@ export const CalendarScreen: React.FC = () => {
             // 1. Logged period day (flow !== 'none') -> Hot Pink
             const isLoggedPeriod = cycleData.loggedPeriodDates.includes(dateStr);
 
-            // 2. Predicted period day -> Light Pink with Navy/Ink text (never white!)
+            // 2. Predicted period day -> Light Pink with Navy text (never white!)
             const isPredictedPeriod = !isLoggedPeriod && cycleData.predictedPeriodDates.includes(dateStr);
 
             // 3. Fertile window -> Soft outline
@@ -174,14 +174,14 @@ export const CalendarScreen: React.FC = () => {
             const logEntry = allLogs[dateStr];
             const hasSymptoms = logEntry && ((logEntry.symptoms && logEntry.symptoms.length > 0) || logEntry.painLevel > 0);
 
-            let bgStyle = 'bg-[#FFF5F9] text-[#0B1713]';
+            let bgStyle = 'bg-[#F7F8FC] text-[#0B1713] hover:bg-[#E6E8F3]/60';
             let outlineStyle = '';
 
             if (isLoggedPeriod) {
               // Primary hot pink #F73F8B
               bgStyle = 'bg-[#F73F8B] text-white font-bold shadow-xs';
             } else if (isPredictedPeriod) {
-              // Secondary light pink #FF6FAE with NAVY or INK text, never white!
+              // Secondary light pink #FF6FAE with NAVY text, never white!
               bgStyle = 'bg-[#FF6FAE] text-[#0C1F78] font-bold shadow-xs';
             }
 
@@ -226,7 +226,7 @@ export const CalendarScreen: React.FC = () => {
         </div>
 
         {/* Legend */}
-        <div className="mt-5 pt-4 border-t border-[#FF6FAE]/20 grid grid-cols-2 gap-2.5 text-xs">
+        <div className="mt-5 pt-4 border-t border-[#E6E8F3] grid grid-cols-2 gap-2.5 text-xs">
           <div className="flex items-center gap-2">
             <span className="w-3.5 h-3.5 rounded-md bg-[#F73F8B] shrink-0 shadow-xs" />
             <span className="text-[#0B1713]">{t('calendar.legendPeriod')}</span>
@@ -243,7 +243,7 @@ export const CalendarScreen: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="w-3.5 h-3.5 rounded-md bg-[#FFF5F9] border border-[#FF6FAE]/30 flex items-center justify-center shrink-0">
+            <span className="w-3.5 h-3.5 rounded-md bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0C1F78]" />
             </span>
             <span className="text-[#0B1713]">{t('calendar.legendSymptoms')}</span>
@@ -252,7 +252,7 @@ export const CalendarScreen: React.FC = () => {
       </section>
 
       {/* SELECTED DAY INSPECTION & QUICK CHECK-IN ACTION */}
-      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#FF6FAE]/30 space-y-3">
+      <section className="bg-white rounded-3xl p-5 shadow-sm border border-[#E6E8F3] space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <span className="text-[11px] font-bold uppercase tracking-wider text-[#0C1F78]">
@@ -283,22 +283,22 @@ export const CalendarScreen: React.FC = () => {
                   {t(`checkin.flow${selectedDateLog.flow.charAt(0).toUpperCase() + selectedDateLog.flow.slice(1)}`)}
                 </span>
               )}
-              <span className="px-3 py-1 rounded-lg bg-[#FF6FAE] text-[#0C1F78] text-xs font-semibold capitalize">
+              <span className="px-3 py-1 rounded-lg bg-[#FF6FAE] text-[#0C1F78] text-xs font-bold capitalize">
                 {t(`checkin.energy${selectedDateLog.energy.charAt(0).toUpperCase() + selectedDateLog.energy.slice(1)}`)}
               </span>
-              <span className="px-3 py-1 rounded-lg bg-[#FF6FAE] text-[#0B1713] text-xs font-medium capitalize">
+              <span className="px-3 py-1 rounded-lg bg-[#FF6FAE] text-[#0B1713] text-xs font-bold capitalize">
                 {t(`checkin.mood${selectedDateLog.mood.charAt(0).toUpperCase() + selectedDateLog.mood.slice(1)}`)}
               </span>
               <span
                 className={`px-3 py-1 rounded-lg text-xs font-bold ${
                   selectedDateLog.painLevel >= 8
                     ? 'bg-[#960045] text-white'
-                    : 'bg-[#FF6FAE]/25 text-[#0C1F78] border border-[#FF6FAE]/30'
+                    : 'bg-[#F7F8FC] text-[#0C1F78] border border-[#E6E8F3]'
                 }`}
               >
                 Pain: {selectedDateLog.painLevel}/10
               </span>
-              <span className="px-3 py-1 rounded-lg bg-[#FFF5F9] border border-[#FF6FAE]/30 text-[#0C1F78] text-xs font-medium">
+              <span className="px-3 py-1 rounded-lg bg-[#F7F8FC] border border-[#E6E8F3] text-[#0C1F78] text-xs font-semibold">
                 {selectedDateLog.sleepHours}h sleep
               </span>
             </div>
@@ -308,7 +308,7 @@ export const CalendarScreen: React.FC = () => {
                 {selectedDateLog.symptoms.map((s) => (
                   <span
                     key={s}
-                    className="px-2 py-0.5 rounded-md bg-[#FF6FAE] text-[#0C1F78] text-[11px] font-semibold"
+                    className="px-2 py-0.5 rounded-md bg-[#FF6FAE] text-[#0C1F78] text-[11px] font-bold"
                   >
                     {t(`checkin.symptom${s.split('_').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('')}`)}
                   </span>
@@ -317,7 +317,7 @@ export const CalendarScreen: React.FC = () => {
             )}
 
             {selectedDateLog.note && (
-              <p className="text-xs text-[#0B1713] italic bg-[#FFF5F9] p-2.5 rounded-xl border border-[#FF6FAE]/20 mt-1">
+              <p className="text-xs text-[#0B1713] italic bg-[#F7F8FC] p-2.5 rounded-xl border border-[#E6E8F3] mt-1">
                 "{selectedDateLog.note}"
               </p>
             )}
@@ -333,7 +333,7 @@ export const CalendarScreen: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsCheckInOpen(true)}
-            className="w-full min-h-[48px] rounded-2xl bg-[#F73F8B] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:opacity-95 active:scale-[0.98] transition-all cursor-pointer"
+            className="w-full min-h-[48px] rounded-2xl bg-[#F73F8B] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:bg-[#e02f78] active:scale-[0.98] transition-all cursor-pointer"
           >
             {selectedDateLog ? (
               <>
@@ -351,8 +351,8 @@ export const CalendarScreen: React.FC = () => {
       </section>
 
       {/* Fertile Window Estimate Explainer */}
-      <section className="bg-white rounded-2xl p-4 shadow-sm border border-[#FF6FAE]/20 flex items-start gap-3">
-        <Sparkles className="w-5 h-5 text-[#F73F8B] shrink-0 mt-0.5" />
+      <section className="bg-white rounded-3xl p-4 shadow-sm border border-[#E6E8F3] flex items-start gap-3">
+        <Sparkles className="w-5 h-5 text-[#0C1F78] shrink-0 mt-0.5" />
         <div className="text-xs text-[#0B1713] leading-relaxed">
           <div className="flex items-center gap-1.5 mb-0.5">
             <strong className="text-[#0C1F78]">

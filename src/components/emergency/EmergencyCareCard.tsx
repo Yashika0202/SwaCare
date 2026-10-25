@@ -77,7 +77,7 @@ export const EmergencyCareCard: React.FC<EmergencyCareCardProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="min-h-[44px] px-4 rounded-xl border border-[#960045]/30 text-[#960045] bg-white font-semibold text-xs hover:bg-[#FFF5F9] transition-all cursor-pointer"
+            className="min-h-[44px] px-4 rounded-xl border border-[#960045]/30 text-[#960045] bg-white font-semibold text-xs hover:bg-[#960045]/10 transition-all cursor-pointer"
           >
             {t('emergency.dismiss')}
           </button>

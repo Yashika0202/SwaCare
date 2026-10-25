@@ -232,9 +232,9 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
       aria-modal="true"
       className="fixed inset-0 z-50 bg-[#0B1713]/40 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto animate-fadeIn"
     >
-      <div className="bg-[#FFF5F9] w-full max-w-md max-h-[92vh] sm:max-h-[85vh] rounded-t-3xl sm:rounded-3xl flex flex-col shadow-2xl border-t sm:border border-[#FF6FAE]/30 overflow-hidden">
+      <div className="bg-[#F7F8FC] w-full max-w-md max-h-[92vh] sm:max-h-[85vh] rounded-t-3xl sm:rounded-3xl flex flex-col shadow-2xl border-t sm:border border-[#E6E8F3] overflow-hidden">
         {/* Modal Top Header */}
-        <div className="sticky top-0 z-10 bg-[#FFF5F9]/95 backdrop-blur-md px-5 py-4 border-b border-[#FF6FAE]/20 flex items-center justify-between">
+        <div className="sticky top-0 z-10 bg-[#F7F8FC]/95 backdrop-blur-md px-5 py-4 border-b border-[#E6E8F3] flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-xl bg-[#F73F8B] flex items-center justify-center text-white shadow-xs">
               <Sparkles className="w-4 h-4 text-white" />
@@ -252,7 +252,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="w-9 h-9 rounded-full bg-white border border-[#FF6FAE]/30 flex items-center justify-center text-[#0C1F78] hover:bg-[#FF6FAE]/20 active:scale-95 transition-all cursor-pointer"
+            className="w-9 h-9 rounded-full bg-white border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] hover:bg-[#E6E8F3] active:scale-95 transition-all cursor-pointer"
             aria-label={t('checkin.closeButton')}
           >
             <X className="w-5 h-5 text-[#0C1F78]" />
@@ -262,8 +262,8 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
         {/* Content Area */}
         <div className="flex-1 overflow-y-auto px-5 py-4 space-y-5">
           {alreadyExists && !showConfirmation && (
-            <div className="p-3 rounded-xl bg-[#FF6FAE]/20 border border-[#FF6FAE]/30 text-xs text-[#0C1F78] flex items-center gap-2">
-              <Activity className="w-4 h-4 text-[#F73F8B] shrink-0" />
+            <div className="p-3 rounded-xl bg-white border border-[#E6E8F3] text-xs text-[#0C1F78] flex items-center gap-2">
+              <Activity className="w-4 h-4 text-[#0C1F78] shrink-0" />
               <span>{t('checkin.alreadyLoggedHint')}</span>
             </div>
           )}
@@ -284,18 +284,18 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
               </div>
 
               {/* Summary snapshot */}
-              <div className="bg-white rounded-2xl p-4 border border-[#FF6FAE]/30 text-left text-xs space-y-2 mt-4">
-                <div className="flex justify-between py-1 border-b border-[#FF6FAE]/15">
+              <div className="bg-white rounded-2xl p-4 border border-[#E6E8F3] text-left text-xs space-y-2 mt-4">
+                <div className="flex justify-between py-1 border-b border-[#E6E8F3]">
                   <span className="text-[#0B1713]/70">{t('checkin.flowSection')}:</span>
                   <span className="font-bold text-[#0C1F78] capitalize">{flow}</span>
                 </div>
-                <div className="flex justify-between py-1 border-b border-[#FF6FAE]/15">
+                <div className="flex justify-between py-1 border-b border-[#E6E8F3]">
                   <span className="text-[#0B1713]/70">{t('checkin.painSection')}:</span>
                   <span className={`font-bold ${isPainHigh ? 'text-[#960045]' : 'text-[#0C1F78]'}`}>
                     {painLevel} / 10
                   </span>
                 </div>
-                <div className="flex justify-between py-1 border-b border-[#FF6FAE]/15">
+                <div className="flex justify-between py-1 border-b border-[#E6E8F3]">
                   <span className="text-[#0B1713]/70">{t('checkin.sleepSection')}:</span>
                   <span className="font-bold text-[#0C1F78]">
                     {t('checkin.sleepHoursDisplay', { hours: sleepHours })}
@@ -334,7 +334,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
           ) : (
             <form onSubmit={handleSave} className="space-y-5">
               {/* 1. PERIOD FLOW (Icon buttons) */}
-              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#FF6FAE]/25 space-y-2.5">
+              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#E6E8F3] space-y-2.5">
                 <label className="block text-xs font-bold text-[#0C1F78]">
                   {t('checkin.flowSection')}
                 </label>
@@ -353,7 +353,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                             ? isHeavy
                               ? 'bg-[#960045] text-white border-[#960045] shadow-xs'
                               : 'bg-[#F73F8B] text-white border-[#F73F8B] shadow-xs'
-                            : 'bg-[#FFF5F9] text-[#0C1F78] border-[#FF6FAE]/30 hover:border-[#F73F8B]'
+                            : 'bg-[#F7F8FC] text-[#0C1F78] border-[#E6E8F3] hover:border-[#FF6FAE]'
                         }`}
                       >
                         <div className={isSelected ? 'text-white' : 'text-[#0C1F78]'}>
@@ -369,7 +369,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
               </section>
 
               {/* 2. PAIN LEVEL (Slider 0-10, Pain 8-10 in crimson) */}
-              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#FF6FAE]/25 space-y-2.5">
+              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#E6E8F3] space-y-2.5">
                 <div className="flex items-center justify-between">
                   <div>
                     <label className="text-xs font-bold text-[#0C1F78] block">
@@ -387,7 +387,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                         ? 'bg-[#960045] text-white shadow-xs'
                         : painLevel > 0
                         ? 'bg-[#FF6FAE] text-[#0C1F78]'
-                        : 'bg-[#FFF5F9] text-[#0C1F78] border border-[#FF6FAE]/30'
+                        : 'bg-[#F7F8FC] text-[#0C1F78] border border-[#E6E8F3]'
                     }`}
                   >
                     {painLevel} / 10
@@ -403,7 +403,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                     value={painLevel}
                     onChange={(e) => setPainLevel(parseInt(e.target.value))}
                     className={`w-full cursor-pointer h-2 rounded-lg ${
-                      isPainHigh ? 'accent-[#960045]' : 'accent-[#F73F8B]'
+                      isPainHigh ? 'accent-[#960045]' : 'accent-[#0C1F78]'
                     }`}
                   />
                   <div className="flex justify-between text-[10px] font-medium text-[#0B1713]/50 px-1 mt-1">
@@ -422,7 +422,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
               </section>
 
               {/* 3. MOOD (5 emoji options) */}
-              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#FF6FAE]/25 space-y-2.5">
+              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#E6E8F3] space-y-2.5">
                 <label className="block text-xs font-bold text-[#0C1F78]">
                   {t('checkin.moodSection')}
                 </label>
@@ -437,7 +437,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                         className={`min-h-[58px] p-1.5 rounded-xl border flex flex-col items-center justify-center gap-1 transition-all cursor-pointer active:scale-95 ${
                           isSelected
                             ? 'bg-[#F73F8B] text-white border-[#F73F8B] shadow-xs'
-                            : 'bg-[#FFF5F9] text-[#0C1F78] border-[#FF6FAE]/30 hover:border-[#F73F8B]'
+                            : 'bg-[#F7F8FC] text-[#0C1F78] border-[#E6E8F3] hover:border-[#FF6FAE]'
                         }`}
                       >
                         <span className="text-xl leading-none">{opt.emoji}</span>
@@ -451,7 +451,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
               </section>
 
               {/* 4. ENERGY (Low / Medium / High) */}
-              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#FF6FAE]/25 space-y-2.5">
+              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#E6E8F3] space-y-2.5">
                 <label className="block text-xs font-bold text-[#0C1F78]">
                   {t('checkin.energySection')}
                 </label>
@@ -466,7 +466,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                         className={`min-h-[44px] py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 ${
                           isSelected
                             ? 'bg-[#F73F8B] text-white border-[#F73F8B] shadow-xs'
-                            : 'bg-[#FFF5F9] text-[#0C1F78] border-[#FF6FAE]/30 hover:bg-[#FF6FAE]/20'
+                            : 'bg-[#F7F8FC] text-[#0C1F78] border-[#E6E8F3] hover:bg-[#E6E8F3]'
                         }`}
                       >
                         <Zap className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-[#0C1F78]'}`} />
@@ -478,7 +478,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
               </section>
 
               {/* 5. SLEEP HOURS (Simple Stepper) */}
-              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#FF6FAE]/25">
+              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#E6E8F3]">
                 <div className="flex items-center justify-between">
                   <div>
                     <label className="text-xs font-bold text-[#0C1F78] block">
@@ -493,7 +493,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                     <button
                       type="button"
                       onClick={() => setSleepHours((prev) => Math.max(0, +(prev - 0.5).toFixed(1)))}
-                      className="w-10 h-10 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/30 text-[#0C1F78] flex items-center justify-center hover:bg-[#FF6FAE]/20 active:scale-95 transition-all cursor-pointer"
+                      className="w-10 h-10 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] text-[#0C1F78] flex items-center justify-center hover:bg-[#E6E8F3] active:scale-95 transition-all cursor-pointer"
                       aria-label="Decrease sleep hours"
                     >
                       <Minus className="w-4 h-4 text-[#0C1F78]" />
@@ -504,7 +504,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                     <button
                       type="button"
                       onClick={() => setSleepHours((prev) => Math.min(24, +(prev + 0.5).toFixed(1)))}
-                      className="w-10 h-10 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/30 text-[#0C1F78] flex items-center justify-center hover:bg-[#FF6FAE]/20 active:scale-95 transition-all cursor-pointer"
+                      className="w-10 h-10 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] text-[#0C1F78] flex items-center justify-center hover:bg-[#E6E8F3] active:scale-95 transition-all cursor-pointer"
                       aria-label="Increase sleep hours"
                     >
                       <Plus className="w-4 h-4 text-[#0C1F78]" />
@@ -514,7 +514,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
               </section>
 
               {/* 6. SYMPTOMS (Multi-select chips with light pink & navy/ink text) */}
-              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#FF6FAE]/25 space-y-2.5">
+              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#E6E8F3] space-y-2.5">
                 <div className="flex items-center justify-between">
                   <label className="text-xs font-bold text-[#0C1F78]">
                     {t('checkin.symptomsSection')}
@@ -536,7 +536,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                         className={`min-h-[44px] px-3.5 py-2 rounded-xl text-xs transition-all cursor-pointer active:scale-95 flex items-center gap-1.5 ${
                           isSelected
                             ? 'bg-[#FF6FAE] text-[#0C1F78] font-bold border border-[#FF6FAE] shadow-xs' // Strictly Navy on light pink!
-                            : 'bg-[#FFF5F9] text-[#0B1713] font-medium border border-[#FF6FAE]/30 hover:border-[#FF6FAE]'
+                            : 'bg-[#F7F8FC] text-[#0B1713] font-medium border border-[#E6E8F3] hover:border-[#FF6FAE]'
                         }`}
                       >
                         {isSelected && <Check className="w-3.5 h-3.5 text-[#0C1F78]" />}
@@ -548,7 +548,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
               </section>
 
               {/* 7. OPTIONAL HORMONAL PATTERN INDICATORS */}
-              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#FF6FAE]/25 space-y-3">
+              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#E6E8F3] space-y-3">
                 <div>
                   <label className="text-xs font-bold text-[#0C1F78] block">
                     {t('checkin.optionalIndicatorsTitle')}
@@ -570,7 +570,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                       className={`min-h-[38px] px-3.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                         excessHair
                           ? 'bg-[#FF6FAE] text-[#0C1F78] border border-[#FF6FAE] shadow-xs'
-                          : 'bg-[#FFF5F9] text-[#0B1713]/70 border border-[#FF6FAE]/30'
+                          : 'bg-[#F7F8FC] text-[#0B1713]/70 border border-[#E6E8F3]'
                       }`}
                     >
                       {excessHair ? t('common.yes') : t('common.no')}
@@ -593,7 +593,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                             className={`min-h-[40px] rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                               isSelected
                                 ? 'bg-[#FF6FAE] text-[#0C1F78] border border-[#FF6FAE] shadow-xs'
-                                : 'bg-[#FFF5F9] text-[#0B1713]/70 border border-[#FF6FAE]/30 hover:border-[#FF6FAE]'
+                                : 'bg-[#F7F8FC] text-[#0B1713]/70 border border-[#E6E8F3] hover:border-[#FF6FAE]'
                             }`}
                           >
                             {t(`checkin.weight${w.charAt(0).toUpperCase() + w.slice(1)}`)}
@@ -614,7 +614,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                       className={`min-h-[38px] px-3.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                         darkSkinPatches
                           ? 'bg-[#FF6FAE] text-[#0C1F78] border border-[#FF6FAE] shadow-xs'
-                          : 'bg-[#FFF5F9] text-[#0B1713]/70 border border-[#FF6FAE]/30'
+                          : 'bg-[#F7F8FC] text-[#0B1713]/70 border border-[#E6E8F3]'
                       }`}
                     >
                       {darkSkinPatches ? t('common.yes') : t('common.no')}
@@ -624,7 +624,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
               </section>
 
               {/* 8. OPTIONAL NOTE */}
-              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#FF6FAE]/25 space-y-2">
+              <section className="bg-white rounded-2xl p-4 shadow-xs border border-[#E6E8F3] space-y-2">
                 <label className="block text-xs font-bold text-[#0C1F78]">
                   {t('checkin.noteSection')}
                 </label>
@@ -633,7 +633,7 @@ export const DailyCheckInScreen: React.FC<DailyCheckInScreenProps> = ({
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder={t('checkin.notePlaceholder')}
-                  className="w-full p-3 rounded-xl border border-[#FF6FAE]/30 text-xs text-[#0B1713] focus:outline-none focus:ring-2 focus:ring-[#F73F8B] bg-[#FFF5F9]/40 resize-none"
+                  className="w-full p-3 rounded-xl border border-[#E6E8F3] text-xs text-[#0B1713] focus:outline-none focus:ring-2 focus:ring-[#0C1F78] bg-[#F7F8FC] resize-none"
                 />
               </section>
 

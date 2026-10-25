@@ -128,7 +128,7 @@ export const DoctorReportModal: React.FC<DoctorReportModalProps> = ({
   };
 
   const handleShare = async () => {
-    const summaryText = `Luna Health Report (3 Months):
+    const summaryText = `SwaCare Health Report (3 Months):
 - Average Cycle Length: ${cycleData.cycleLength} days
 - Average Period: ${cycleData.periodLength} days
 - Max Pain Recorded: ${maxPainRecorded}/10
@@ -139,7 +139,7 @@ Generated from self-reported data.`;
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Luna Doctor Report',
+          title: 'SwaCare Doctor Report',
           text: summaryText,
         });
       } catch {
@@ -165,7 +165,7 @@ Generated from self-reported data.`;
     >
       <div className="bg-white w-full max-w-2xl max-h-[96vh] sm:rounded-3xl flex flex-col shadow-2xl overflow-hidden print:max-h-none print:shadow-none print:border-none print:w-full print:rounded-none">
         {/* MODAL CONTROL HEADER (HIDDEN ON PRINT) */}
-        <div className="print:hidden sticky top-0 z-20 bg-white/95 backdrop-blur-md px-5 py-3.5 border-b border-[#FF6FAE]/20 flex items-center justify-between">
+        <div className="print:hidden sticky top-0 z-20 bg-white/95 backdrop-blur-md px-5 py-3.5 border-b border-[#E6E8F3] flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-xl bg-[#F73F8B] text-white flex items-center justify-center">
               <FileText className="w-4 h-4 text-white" />
@@ -193,16 +193,16 @@ Generated from self-reported data.`;
             <button
               type="button"
               onClick={handleShare}
-              className="min-h-[38px] px-3 rounded-xl border border-[#FF6FAE]/40 bg-[#FFF5F9] text-[#0C1F78] font-semibold text-xs flex items-center gap-1.5 hover:bg-[#FF6FAE]/20 transition-all cursor-pointer"
+              className="min-h-[38px] px-3 rounded-xl border border-[#E6E8F3] bg-[#F7F8FC] text-[#0C1F78] font-semibold text-xs flex items-center gap-1.5 hover:bg-[#E6E8F3] transition-all cursor-pointer"
             >
-              <Share2 className="w-3.5 h-3.5 text-[#F73F8B]" />
+              <Share2 className="w-3.5 h-3.5 text-[#0C1F78]" />
               <span>{t('report.shareCTA')}</span>
             </button>
 
             <button
               type="button"
               onClick={onClose}
-              className="w-9 h-9 rounded-full bg-[#FFF5F9] border border-[#FF6FAE]/30 text-[#0C1F78] flex items-center justify-center hover:bg-[#FF6FAE]/20 transition-all cursor-pointer"
+              className="w-9 h-9 rounded-full bg-[#F7F8FC] border border-[#E6E8F3] text-[#0C1F78] flex items-center justify-center hover:bg-[#E6E8F3] transition-all cursor-pointer"
               aria-label="Close"
             >
               <X className="w-5 h-5 text-[#0C1F78]" />
@@ -219,7 +219,7 @@ Generated from self-reported data.`;
         {/* PRINTABLE CLINICAL SUMMARY CONTENT */}
         <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6 text-[#0B1713] print:p-6 print:overflow-visible">
           {/* 1. DOCUMENT HEADER */}
-          <div className="border-b-2 border-[#0C1F78]/20 pb-4 flex items-start justify-between">
+          <div className="border-b-2 border-[#E6E8F3] pb-4 flex items-start justify-between">
             <div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#F73F8B]">
                 {t('report.headerBadge')}
@@ -237,7 +237,7 @@ Generated from self-reported data.`;
 
             <div className="text-right">
               <div className="text-base font-bold text-[#F73F8B] leading-none">
-                Luna
+                SwaCare
               </div>
               <div className="text-[10px] text-[#0B1713]/60 mt-1">
                 {userProfile?.age ? `${userProfile.age} ${t('common.years')}` : 'Companion Log'}
@@ -250,7 +250,7 @@ Generated from self-reported data.`;
 
           {/* 2. THREE-MONTH CYCLE & BLEEDING METRICS STRIP */}
           <div className="grid grid-cols-4 gap-2.5 text-center">
-            <div className="p-3 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/25">
+            <div className="p-3 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3]">
               <span className="text-[10px] font-bold text-[#0B1713]/60 uppercase block">
                 {t('report.avgCycleLength')}
               </span>
@@ -259,7 +259,7 @@ Generated from self-reported data.`;
               </div>
             </div>
 
-            <div className="p-3 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/25">
+            <div className="p-3 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3]">
               <span className="text-[10px] font-bold text-[#0B1713]/60 uppercase block">
                 {t('report.avgPeriodDuration')}
               </span>
@@ -268,7 +268,7 @@ Generated from self-reported data.`;
               </div>
             </div>
 
-            <div className="p-3 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/25">
+            <div className="p-3 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3]">
               <span className="text-[10px] font-bold text-[#0B1713]/60 uppercase block">
                 {t('report.maxPainScore')}
               </span>
@@ -277,7 +277,7 @@ Generated from self-reported data.`;
               </div>
             </div>
 
-            <div className="p-3 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/25">
+            <div className="p-3 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3]">
               <span className="text-[10px] font-bold text-[#0B1713]/60 uppercase block">
                 {t('report.heavyFlowDaysCount')}
               </span>
@@ -294,10 +294,10 @@ Generated from self-reported data.`;
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#0C1F78]">
                 {t('report.cycleHistoryTableTitle')}
               </h3>
-              <div className="border border-[#FF6FAE]/30 rounded-2xl overflow-hidden text-xs">
+              <div className="border border-[#E6E8F3] rounded-2xl overflow-hidden text-xs">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="bg-[#FFF5F9] text-[#0C1F78] font-bold border-b border-[#FF6FAE]/30">
+                    <tr className="bg-[#F7F8FC] text-[#0C1F78] font-bold border-b border-[#E6E8F3]">
                       <th className="p-2.5">{t('report.tableCycle')}</th>
                       <th className="p-2.5">{t('report.tableDates')}</th>
                       <th className="p-2.5 text-center">{t('report.tableLength')}</th>
@@ -305,9 +305,9 @@ Generated from self-reported data.`;
                       <th className="p-2.5 text-center">{t('report.tableMaxPain')}</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#FF6FAE]/20">
+                  <tbody className="divide-y divide-[#E6E8F3]">
                     {completedCycles.map((c, i) => (
-                      <tr key={c.start} className="hover:bg-[#FFF5F9]/50">
+                      <tr key={c.start} className="hover:bg-[#F7F8FC]">
                         <td className="p-2.5 font-bold text-[#0C1F78]">Cycle {i + 1}</td>
                         <td className="p-2.5 text-[11px] text-[#0B1713]/80">
                           {c.start} → {c.end}
@@ -333,13 +333,13 @@ Generated from self-reported data.`;
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#0C1F78]">
                 {t('report.cycleLengthChartTitle')}
               </h3>
-              <div className="h-36 p-2 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/30 flex flex-col justify-end">
+              <div className="h-36 p-2 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3] flex flex-col justify-end">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={miniChartData} margin={{ top: 10, right: 5, left: -25, bottom: 0 }}>
                     <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#0C1F78' }} />
                     <YAxis domain={[20, 42]} tick={{ fontSize: 9, fill: '#0C1F78' }} />
-                    <ReferenceLine y={cycleData.cycleLength} stroke="#0C1F78" strokeDasharray="3 3" />
-                    <Bar dataKey="length" fill="#F73F8B" radius={[4, 4, 0, 0]} />
+                    <ReferenceLine y={cycleData.cycleLength} stroke="#F73F8B" strokeDasharray="3 3" />
+                    <Bar dataKey="length" fill="#0C1F78" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -348,7 +348,7 @@ Generated from self-reported data.`;
 
           {/* 4. SYMPTOMS & PAIN PROFILE */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-3.5 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/25 space-y-2">
+            <div className="p-3.5 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3] space-y-2">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#0C1F78]">
                 {t('report.topSymptomsTitle')}
               </h3>
@@ -359,7 +359,7 @@ Generated from self-reported data.`;
                       <span className="font-medium text-[#0B1713]">
                         {t(`checkin.symptom${sym.split('_').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('')}`)}
                       </span>
-                      <span className="font-bold text-[#0C1F78] bg-white px-2 py-0.5 rounded border border-[#FF6FAE]/30 text-[11px]">
+                      <span className="font-bold text-[#0C1F78] bg-white px-2 py-0.5 rounded border border-[#E6E8F3] text-[11px]">
                         {count} days
                       </span>
                     </div>
@@ -372,7 +372,7 @@ Generated from self-reported data.`;
               )}
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-[#FFF5F9] border border-[#FF6FAE]/25 space-y-2">
+            <div className="p-3.5 rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3] space-y-2">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#0C1F78]">
                 {t('report.painSummaryTitle')}
               </h3>
@@ -414,7 +414,7 @@ Generated from self-reported data.`;
                       className={`p-3.5 rounded-2xl border text-xs space-y-1 ${
                         isCritical
                           ? 'bg-[#960045]/5 border-[#960045]/40 text-[#0B1713]'
-                          : 'bg-[#FFF5F9] border-[#FF6FAE]/40 text-[#0B1713]'
+                          : 'bg-[#F7F8FC] border-[#E6E8F3] text-[#0B1713]'
                       }`}
                     >
                       <div className="flex items-center justify-between">
@@ -440,15 +440,15 @@ Generated from self-reported data.`;
                 })}
               </div>
             ) : (
-              <div className="p-3 rounded-xl bg-[#FFF5F9] border border-[#FF6FAE]/25 text-xs text-[#0B1713] flex items-center gap-2">
-                <Check className="w-4 h-4 text-[#F73F8B]" />
+              <div className="p-3 rounded-xl bg-[#F7F8FC] border border-[#E6E8F3] text-xs text-[#0B1713] flex items-center gap-2">
+                <Check className="w-4 h-4 text-[#0C1F78]" />
                 <span>{t('report.noActiveFlagsNotice')}</span>
               </div>
             )}
           </div>
 
           {/* 6. MANDATORY LEGAL / MEDICAL DISCLAIMER FOOTER */}
-          <div className="pt-4 border-t-2 border-[#0C1F78]/20 text-center">
+          <div className="pt-4 border-t-2 border-[#E6E8F3] text-center">
             <p className="text-[11px] font-bold text-[#0C1F78] uppercase tracking-wider">
               {t('report.mandatoryFooter')}
             </p>

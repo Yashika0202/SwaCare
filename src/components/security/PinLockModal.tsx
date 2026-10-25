@@ -81,12 +81,12 @@ export const PinLockModal: React.FC<PinLockModalProps> = ({
       aria-modal="true"
       className="fixed inset-0 z-50 bg-[#0B1713]/85 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn"
     >
-      <div className="bg-[#FFF5F9] w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-[#FF6FAE]/30 text-center relative">
+      <div className="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-[#E6E8F3] text-center relative">
         {onCancel && (
           <button
             type="button"
             onClick={onCancel}
-            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white border border-[#FF6FAE]/30 flex items-center justify-center text-[#0C1F78] hover:bg-[#FF6FAE]/20 cursor-pointer"
+            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#F7F8FC] border border-[#E6E8F3] flex items-center justify-center text-[#0C1F78] hover:bg-[#E6E8F3] cursor-pointer"
             aria-label={t('pin.cancel')}
           >
             <X className="w-5 h-5 text-[#0C1F78]" />
@@ -114,7 +114,7 @@ export const PinLockModal: React.FC<PinLockModalProps> = ({
                 className={`w-4 h-4 rounded-full transition-all duration-200 ${
                   isFilled
                     ? 'bg-[#F73F8B] scale-110 shadow-xs'
-                    : 'bg-white border-2 border-[#FF6FAE]/60'
+                    : 'bg-[#F7F8FC] border-2 border-[#E6E8F3]'
                 }`}
               />
             );
@@ -134,7 +134,7 @@ export const PinLockModal: React.FC<PinLockModalProps> = ({
               key={num}
               type="button"
               onClick={() => handleKeyPress(num)}
-              className="min-h-[54px] min-w-[54px] rounded-2xl bg-white border border-[#FF6FAE]/30 text-xl font-bold text-[#0C1F78] hover:bg-[#FF6FAE]/20 active:scale-95 transition-all shadow-xs flex items-center justify-center cursor-pointer"
+              className="min-h-[54px] min-w-[54px] rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3] text-xl font-bold text-[#0C1F78] hover:bg-[#E6E8F3] active:scale-95 transition-all shadow-xs flex items-center justify-center cursor-pointer"
             >
               {num}
             </button>
@@ -157,7 +157,7 @@ export const PinLockModal: React.FC<PinLockModalProps> = ({
           <button
             type="button"
             onClick={() => handleKeyPress(0)}
-            className="min-h-[54px] min-w-[54px] rounded-2xl bg-white border border-[#FF6FAE]/30 text-xl font-bold text-[#0C1F78] hover:bg-[#FF6FAE]/20 active:scale-95 transition-all shadow-xs flex items-center justify-center cursor-pointer"
+            className="min-h-[54px] min-w-[54px] rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3] text-xl font-bold text-[#0C1F78] hover:bg-[#E6E8F3] active:scale-95 transition-all shadow-xs flex items-center justify-center cursor-pointer"
           >
             0
           </button>
@@ -166,7 +166,7 @@ export const PinLockModal: React.FC<PinLockModalProps> = ({
           <button
             type="button"
             onClick={handleDelete}
-            className="min-h-[54px] min-w-[54px] rounded-2xl bg-white border border-[#FF6FAE]/30 text-lg font-bold text-[#0C1F78] hover:bg-[#FF6FAE]/20 active:scale-95 transition-all shadow-xs flex items-center justify-center cursor-pointer"
+            className="min-h-[54px] min-w-[54px] rounded-2xl bg-[#F7F8FC] border border-[#E6E8F3] text-lg font-bold text-[#0C1F78] hover:bg-[#E6E8F3] active:scale-95 transition-all shadow-xs flex items-center justify-center cursor-pointer"
             aria-label="Delete"
           >
             <Delete className="w-5 h-5 text-[#0C1F78]" />
